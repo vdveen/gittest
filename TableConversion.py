@@ -5,3 +5,11 @@
 #Purpose: To convert coordinates in a csv file from DMS
 #         to the DD format and store it in a new file.
 #-----------------------------------------------------
+
+cfile = open("/Users/asvdveen/Documents/Github/gittest/dmscoords.csv", 'r')
+print cfile
+print type(cfile)
+coords = cfile.readline()
+print type(coords)
+values = coords.split(',')
+print values
