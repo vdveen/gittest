@@ -1,0 +1,25 @@
+Lab Assignment 2 - Andrew van der Veen, 10166883
+
+1. Defining the Problem 
+The problem is to create a function to easily convert DMS values in comma-separated-values files (.csv) to DD and to output them in a file. 
+
+2. Design a solution
+Flowchart:
+See attatchment. 
+
+Pseudocode:
+Open csv file
+Take line from file
+Separate longitude from latitude
+Create a function to convert both to DMS to DD
+
+
+
+3. Write the code
+def dms_to_dd(d, m, s=0)
+See LabAssignment3.py
+
+4. Debugging
+
+
+5. Documentation
