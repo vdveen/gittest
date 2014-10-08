@@ -6,15 +6,18 @@
 #         to the DD format and store it in a new file.
 #-----------------------------------------------------
 
-#Opens csv file and tests splitting stuff. 
-cfile = open("/Users/asvdveen/Documents/Github/gittest/dmscoords.csv", 'r')
-print cfile
-print type(cfile)
-coords = cfile.readline()
-print type(coords)
-values = coords.split(',')
-print values
+#Opens csv file.
+cfile = open("/Users/asvdveen/Documents/Github/gittest/dmscoords2.csv", 'r')
+
+#Puts all lines in a single list
+coords = cfile.readlines()
+
+#Separates coords per line
+lines = str(coords).split('\\r')
 
 #Imports converter function from module.
 from G567modules import DMStoDD
-print DMStoDD(10,20,30)
+
+#Go through list and convert
+for line in lines:
+  print line
