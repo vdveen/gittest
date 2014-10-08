@@ -9,20 +9,19 @@
 #Imports converter function from module.
 from G567modules import DMStoDD
 
-#Opens csv file.
-dmsfile = open('dmscoords2.csv')
-#ddfile = open('ddcoords2.csv', 'w')
+#Create new output file and add header
+ddfile = open('ddcoords2.csv', 'w')
+ddfile.write('Longitude, Latitude')
 
-#Reads information from file
+#Opens and reads csv file.
+dmsfile = open('dmscoords2.csv')
 dmsfile = dmsfile.read()
 
-#Splits info from file into lines and puts into a list
+#Splits info from file per line and puts into a list
 dmslines = dmsfile.split('\r')
 
-#Removes the first line through slicing
+#Removes the header line and last line through slicing
 dmslines = dmslines[1:]
-
-#Removes the last line, as it is always empty for some reason
 dmslines = dmslines[:-1]
 
 #Go through file and split individual values
