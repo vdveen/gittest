@@ -22,30 +22,42 @@ dmslines = dmsfile.split('\r')
 #Removes the first line through slicing
 dmslines = dmslines[1:]
 
+#Removes the last line, as it is always empty for some reason
+dmslines = dmslines[:-1]
+
 #Go through file and split individual values
 for line in dmslines:
   values = line.split(',')
 
-  #Chop the line in two to separate lat and lon values
+  #Chop the line in two to separate lat and lon values.
   length = len(values)
   halfway = length / 2
   lat = values[:halfway]
   lon = values[halfway:]
 
-  #Parse latitude into function DMStoDD based on its length
+  #Parse coordinates into function DMStoDD.
+  #Basing it on length makes it possible to have
+  #no seconds, or to have only degrees as input.
   if length == 6:
     latDD = DMStoDD(lat[0], lat[1], lat[2])
     lonDD = DMStoDD(lon[0], lon[1], lon[2])
+    print latDD, lonDD
+
   elif length == 4:
     latDD = DMStoDD(lat[0], lat[1])
     lonDD = DMStoDD(lon[0], lon[1])
-  elif length == 2:
-    latDD = DMStoDD(lat[0])
-    lonDD = DMStoDD(lon[0])
-  else:
-    print 'Sorry, your latitude and longitude need to \
-    be of the same precision level! Input is either \
-    both DMS, DMS or both DM, DM or both D,D'
+    print latDD, lonDD
 
-  print latDD, lonDD
+  elif length == 2:
+    latDD = float(lat[0])
+    lonDD = float(lon[0])
+    print latDD, lonDD
+
+  else:
+    print 'Your coordinate is only', length,'value long.'
+    print 'Sorry, the lat. and lon. need to have\n' \
+    'the same amount of values for this to \n' \
+    'work.'
+
+
 #print latDD
