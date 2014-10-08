@@ -24,44 +24,46 @@ dmslines = dmsfile.split('\r')
 dmslines = dmslines[1:]
 dmslines = dmslines[:-1]
 
-#Go through line and split individual values
+#Counting how many lines have been succesfully converted.
+count = 0
+
+#Go through lines and convert to DD
 for line in dmslines:
+
+  #Split each line into its 6 values
   values = line.split(',')
 
-  #Chop the line in two to separate lat and lon values.
+  #Check if there are 6 values after the split
+  #and parse them as arguments to function DMStoDD.
   length = len(values)
-  halfway = length / 2
-  lat = values[:halfway]
-  lon = values[halfway:]
-
-  #Parse coordinates into function DMStoDD.
   if length == 6:
-    #This converts line input to DD if degrees,
-    #minutes and seconds are given.
+
+    #Chop the line in two to separate lat and lon values.
+    lat = values[:3]
+    lon = values[3:]
+
+    #Parse the lon and lat into the function
     latDD = DMStoDD(lat[0], lat[1], lat[2])
     lonDD = DMStoDD(lon[0], lon[1], lon[2])
+
+    #Write them in a new line in the output file
     coords = '\n' + str(latDD) + ',' + str(lonDD)
     ddfile.write(coords)
 
-  elif length == 4:
-    #This converts line input to DD if degrees & minutes are given
-    latDD = DMStoDD(lat[0], lat[1])
-    lonDD = DMStoDD(lon[0], lon[1])
-    coords = '\n' + str(latDD) + ',' + str(lonDD)
-    ddfile.write(coords)
+    #Increase count of succesful conversions by one
+    count = count + 1
 
-  elif length == 2:
-    #This converts line input to DD if only degrees are given
-    coords = '\n' + lat[0] + ',' + lon[0]
-    ddfile.write(coords)
+    #Print every ten succesful conversions
+    if count % 10 == 0:
+      print str(count) + ' coordinates have been converted'
 
   else:
-    #The only downside to chopping lists in half is that
-    #you can't have lat as DMS and lon as DM, for example.
-    #Hence why the above if statement uses multiples of 2.
-    print 'Your coordinate is only', length,'value long.'
-    print 'Sorry, the lat. and lon. need to have\n' \
-    'the same amount of values for this to \n' \
-    'work.'
+    #If there isn't enough values given
+    print 'One of your coordinates is only', length,'values long.'
+    print 'Sorry, you need to have all 6 values filled in.\n' \
+    'If your coordinate doesn\'t have minutes or seconds values, \n' \
+    'please put the value 0 in.'
 
+#Show the user how many coordinates have been converted
+print 'A total of ' + str(count) + ' coordinates have been converted'
 ddfile.close()
