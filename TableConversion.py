@@ -21,3 +21,4 @@ from G567modules import DMStoDD
 #Go through list and convert
 for line in lines:
   print line
+#humm
