@@ -17,19 +17,19 @@ Create a function DMStoDD to convert both to DMS to DD:
 	Return DD value
 #--------------------------------------------------#
 
-Open csv file
+Open csv file as input file
 Create new output file
 Create header for output file
 
-For each line in file
+Read input file
+Remove first line from imput file
+
+For each line in the file
 	Split line into two and put into list
-	If list contains the letter L
-		Do nothing
-	Else
-		Pass list as argument to DMStoDD
-		Output latitude in latitude column in the output file
-		Output longitude in longitude column in the output file
-		
+	Pass list as argument to DMStoDD
+	Output latitude in latitude column in the output file
+	Output longitude in longitude column in the output file
+
 Close the input and output file
 
 
