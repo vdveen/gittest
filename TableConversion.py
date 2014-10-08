@@ -24,7 +24,7 @@ dmslines = dmsfile.split('\r')
 dmslines = dmslines[1:]
 dmslines = dmslines[:-1]
 
-#Go through file and split individual values
+#Go through line and split individual values
 for line in dmslines:
   values = line.split(',')
 
@@ -40,19 +40,20 @@ for line in dmslines:
     #minutes and seconds are given.
     latDD = DMStoDD(lat[0], lat[1], lat[2])
     lonDD = DMStoDD(lon[0], lon[1], lon[2])
-    print latDD, lonDD
+    coords = '\n' + str(latDD) + ',' + str(lonDD)
+    ddfile.write(coords)
 
   elif length == 4:
     #This converts line input to DD if degrees & minutes are given
     latDD = DMStoDD(lat[0], lat[1])
     lonDD = DMStoDD(lon[0], lon[1])
-    print latDD, lonDD
+    coords = '\n' + str(latDD) + ',' + str(lonDD)
+    ddfile.write(coords)
 
   elif length == 2:
     #This converts line input to DD if only degrees are given
-    latDD = float(lat[0])
-    lonDD = float(lon[0])
-    print latDD, lonDD
+    coords = '\n' + lat[0] + ',' + lon[0]
+    ddfile.write(coords)
 
   else:
     #The only downside to chopping lists in half is that
@@ -62,3 +63,5 @@ for line in dmslines:
     print 'Sorry, the lat. and lon. need to have\n' \
     'the same amount of values for this to \n' \
     'work.'
+
+ddfile.close()
