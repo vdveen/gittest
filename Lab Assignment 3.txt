@@ -1,30 +1,36 @@
 Lab Assignment 2 - Andrew van der Veen, 10166883
 
 1. Defining the Problem
-The problem is to create a function to easily convert DMS values in comma-separated-values files (.csv) to DD and to output them in a file.
+The problem is to create a function to easily convert DMS values in
+comma-separated-values files (.csv) to DD and to output them in a file.
 
 2. Design a solution
 Flowchart:
 See attatchment.
 
 Pseudocode:
-Open csv file
-Take line from file
-Separate longitude from latitude
-
-Take longitude
-Create a function to convert both to DMS to DD:
+#---------------------Module File------------------#
+Create a function DMStoDD to convert both to DMS to DD:
 	Convert first and second number to float
 	Take first and second number and divide by 60
 	If there is a third number, divide it also by 60
-	Add all the inputted numbers together
 	Return DD value
-Do the same for latitude
+#--------------------------------------------------#
 
+Open csv file
 Create new output file
-Create header line
-Store the long and lat in a new output file, on the same line.
+Create header for output file
 
+For each line in file
+	Split line into two and put into list
+	If list contains the letter L
+		Do nothing
+	Else
+		Pass list as argument to DMStoDD
+		Output latitude in latitude column in the output file
+		Output longitude in longitude column in the output file
+		
+Close the input and output file
 
 
 

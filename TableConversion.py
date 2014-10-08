@@ -14,4 +14,10 @@ cfile = open("dmscoords2.csv")
 
 #Go through file and split longitude from latitude
 for line in cfile:
-  print line
+  lines = line.split('\r')  #Create list with all lines
+  values = line.split(',')
+  print lines
+  print len(lines)
+  print values
+  print len(values)
+  print type(lines[2])
