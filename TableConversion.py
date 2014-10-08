@@ -10,14 +10,22 @@
 from G567modules import DMStoDD
 
 #Opens csv file.
-cfile = open("dmscoords2.csv")
+dmsfile = open('dmscoords2.csv')
+#ddfile = open('ddcoords2.csv')
 
-#Go through file and split longitude from latitude
-for line in cfile:
-  lines = line.split('\r')  #Create list with all lines
+#Reads information from file
+dmsfile = dmsfile.read()
+
+#Splits info from file into lines and puts into a list
+dmslines = dmsfile.split('\r')
+print dmslines
+print len(dmslines)
+print dmslines[3]
+
+#Go through file and split individual values
+for line in dmslines:
   values = line.split(',')
-  print lines
-  print len(lines)
   print values
-  print len(values)
-  print type(lines[2])
+
+#for values in line:
+#  values = line.split(',')
