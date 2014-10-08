@@ -9,12 +9,17 @@
 #Imports converter function from module.
 from G567modules import DMStoDD
 
+#Request pathnames from user
+print 'Please put the file in the same folder as the script.'
+inputfile = raw_input('Enter the input file name: ')
+outputfile = raw_input('Enter the output file name: ')
+
 #Create new output file and add header
-ddfile = open('ddcoords2.csv', 'w')
+ddfile = open( outputfile, 'w')
 ddfile.write('Longitude, Latitude')
 
 #Opens and reads csv file.
-dmsfile = open('dmscoords2.csv')
+dmsfile = open(inputfile)
 dmsinfo = dmsfile.read()
 
 #Splits info from file per line and puts into a list
