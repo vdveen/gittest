@@ -15,10 +15,10 @@ ddfile.write('Longitude, Latitude')
 
 #Opens and reads csv file.
 dmsfile = open('dmscoords2.csv')
-dmsfile = dmsfile.read()
+dmsinfo = dmsfile.read()
 
 #Splits info from file per line and puts into a list
-dmslines = dmsfile.split('\r')
+dmslines = dmsinfo.split('\r')
 
 #Removes the header line and last line through slicing
 dmslines = dmslines[1:]
@@ -54,8 +54,8 @@ for line in dmslines:
     count = count + 1
 
     #Print every ten succesful conversions
-    if count % 10 == 0:
-      print str(count) + ' coordinates have been converted'
+    if count % 100 == 0:
+      print str(count) + ' coordinates converted'
 
   else:
     #If there isn't enough values given
@@ -65,5 +65,9 @@ for line in dmslines:
     'please put the value 0 in.'
 
 #Show the user how many coordinates have been converted
-print 'A total of ' + str(count) + ' coordinates have been converted'
+print 'A total of ' + str(count) + \
+      ' coordinates have been succesfully converted.'
+
+#Close the in- and output files.
 ddfile.close()
+dmsfile.close()
