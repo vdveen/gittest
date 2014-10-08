@@ -18,14 +18,11 @@ dmsfile = dmsfile.read()
 
 #Splits info from file into lines and puts into a list
 dmslines = dmsfile.split('\r')
-print dmslines
-print len(dmslines)
-print dmslines[3]
+
+#Removes the first line
+dmslines = dmslines[1:]
 
 #Go through file and split individual values
 for line in dmslines:
   values = line.split(',')
   print values
-
-#for values in line:
-#  values = line.split(',')
