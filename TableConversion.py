@@ -10,7 +10,8 @@
 from G567modules import DMStoDD
 
 #Request pathnames from user
-print 'Please put the file in the same folder as the script.'
+print 'Please make sure the input file is \
+ in the same folder as the script and the module.'
 inputfile = raw_input('Enter the input file name: ')
 outputfile = raw_input('Enter the output file name: ')
 
@@ -59,15 +60,15 @@ for line in dmslines:
     count = count + 1
 
     #Print every ten succesful conversions
-    if count % 100 == 0:
+    if count % 1000 == 0:
       print str(count) + ' coordinates converted'
 
   else:
     #If there isn't enough values given
     print 'One of your coordinates is only', length,'values long.'
-    print 'Sorry, you need to have all 6 values filled in.\n' \
-    'If your coordinate doesn\'t have minutes or seconds values, \n' \
-    'please put the value 0 in.'
+    print 'Sorry, you need to have all 6 values filled in.\n \
+    If your coordinate doesn\'t have minutes or seconds values, \n \
+    please put the value 0 in.'
 
 #Show the user how many coordinates have been converted
 print 'A total of ' + str(count) + \
