@@ -6,8 +6,22 @@
 #         to the DD format and store it in a new file.
 #-----------------------------------------------------
 
-#Imports converter function from module.
-from G567modules import DMStoDD
+#Create function
+def DMStoDD(d,m = 0,s = 0):
+  #The conversation
+  d = float(d)
+  m = float(m) / 60
+  if s <> 0:
+    s = float(s) / 60
+
+  #Checking if the coordinate is negative or positive
+  #and changing the outcome to reflect that
+  if d <= 0:
+    dms = (d - m - s)
+  else:
+    dms = (d + m + s)
+  return dms
+
 
 #Request pathnames from user
 print 'Please make sure the input file is \
@@ -39,40 +53,31 @@ for line in dmslines:
   #Split each line into its 6 values
   values = line.split(',')
 
-  #Check if there are 6 values after the split
-  #and parse them as arguments to function DMStoDD.
-  length = len(values)
-  if length == 6:
+  #Chop the line in two to separate lat and lon values.
+  lat = values[:3]
+  lon = values[3:]
 
-    #Chop the line in two to separate lat and lon values.
-    lat = values[:3]
-    lon = values[3:]
+  #Parse the lon and lat into the function
+  latDD = DMStoDD(lat[0], lat[1], lat[2])
+  lonDD = DMStoDD(lon[0], lon[1], lon[2])
 
-    #Parse the lon and lat into the function
-    latDD = DMStoDD(lat[0], lat[1], lat[2])
-    lonDD = DMStoDD(lon[0], lon[1], lon[2])
+  #Write them in a new line in the output file
+  coords = '\n' + str(latDD) + ',' + str(lonDD)
+  ddfile.write(coords)
 
-    #Write them in a new line in the output file
-    coords = '\n' + str(latDD) + ',' + str(lonDD)
-    ddfile.write(coords)
+  #Increase count of succesful conversions by one
+  count = count + 1
 
-    #Increase count of succesful conversions by one
-    count = count + 1
+  #Print every ten succesful conversions
+  if count % 1000 == 0:
+    print str(count) + ' coordinates converted'
 
-    #Print every ten succesful conversions
-    if count % 1000 == 0:
-      print str(count) + ' coordinates converted'
 
-  else:
-    #If there isn't enough values given
-    print 'One of your coordinates is only', length,'values long.'
-    print 'Sorry, you need to have all 6 values filled in.\n \
-    If your coordinate doesn\'t have minutes or seconds values, \n \
-    please put the value 0 in.'
 
 #Show the user how many coordinates have been converted
 print 'A total of ' + str(count) + \
       ' coordinates have been succesfully converted.'
+
 
 #Close the in- and output files.
 ddfile.close()
