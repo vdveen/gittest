@@ -24,8 +24,6 @@ def DMStoDD(d,m = 0,s = 0):
 
 
 #Request pathnames from user
-print 'Please make sure the input file is \
- in the same folder as the script and the module.'
 inputfile = raw_input('Enter the input file path: ')
 outputfile = raw_input('Enter the output file path: ')
 

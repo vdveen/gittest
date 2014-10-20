@@ -1,28 +1,30 @@
-Lab Assignment 2 - Andrew van der Veen, 10166883
+Lab Assignment 3 - Andrew van der Veen, 10166883
 
+#--------------------#
 1. Defining the Problem
 The problem is to create a function to easily convert DMS values in
 comma-separated-values files (.csv) to DD and to output them in a file.
 
+#--------------------#
 2. Design a solution
 Flowchart:
 See attatchment.
 
 Pseudocode:
-#---------------------Module File------------------#
-Create a function DMStoDD to convert both to DMS to DD:
+
+Create a function DMStoDD to convert  from DMS to DD:
 	Convert first and second number to float
 	Take first and second number and divide by 60
 	If there is a third number, divide it also by 60
 	Return DD value
-#--------------------------------------------------#
+
 
 Open csv file as input file
 Create new output file
 Create header for output file
 
-Read input file
-Remove first line from imput file
+Read input file and split into lines
+Remove header from input file
 
 For each line in the file
 	Split line into two and put into list
@@ -32,13 +34,46 @@ For each line in the file
 
 Close the input and output file
 
-
-
+#--------------------#
 3. Write the code
-def dms_to_dd(d, m, s=0)
-See LabAssignment3.py
+See TableConversion.py
 
+#--------------------#
 4. Debugging
+Because I used a GitHub repository, I can easily track
+my debugging process. One of the first problems I had was
+with the csv file and the difference between read(),
+readlines() and readline(). I couldn't get the csv in a
+list, until I realized that it might be important which
+of the three functions I use, as they react differently
+to iterable files.
 
+Once I managed to handle the input file, I focused on the
+solution by writing detailed pseudocode. This helped me
+to figure out how to get neat, individual lines of
+coordinates and how to handle them.
 
+Then I could write the module to convert the coordinates.
+Since this is relatively similar to the first lab, it was
+the easiest part of the code to write. When I had written
+it, I tried to figure out how to parse the arguments from
+the list of coordinates to the function. This took me
+longer than I'd expected, as I simultaneously tried to
+account for odd values (such as a null value for minutes).
+
+I couldn't find a proper way of accounting for missing
+values, so I based my script on the assumption that there
+are always six values given (three lat, three long) and
+that missing values had to be replaced by zeroes.
+
+Then, I could work on outputting the file. This went
+better than expected. I had some problems at first with
+the difference between Unix pathnames and Windows path
+names, but I could resolve this by testing my script
+on a Windows machine in the ES building.
+
+#--------------------#
 5. Documentation
+Added documentation to the script. I have tested the
+script with the provided file, and cross-checked it with
+converters online. 
